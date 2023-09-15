@@ -8,8 +8,30 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.opennms.dependencies</groupId>
   <artifactId>jasper-dependencies</artifactId>
-  <packaging>pom</packaging>
+  <packaging>jar</packaging>
   <name>OpenNMS :: Dependencies :: Jasper Report</name>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>${maven.shade.plugin.version}</version>
+        <configuration>
+          <artifactSet>
+            <includes>
+              <include>org.jfree:jfreechart</include>
+            </includes>
+          </artifactSet>
+          <relocations>
+            <relocation>
+              <pattern>org.jfree</pattern>
+              <shadedPattern>org.opennms.shaded.jasper.org.jfree</shadedPattern>
+            </relocation>
+          </relocations>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
   <dependencies>
     <dependency>
       <groupId>net.sf.jasperreports</groupId>
@@ -23,6 +45,10 @@
         <exclusion>
           <groupId>eclipse</groupId>
           <artifactId>jdtcore</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jfree</groupId>
+          <artifactId>jfreechart</artifactId>
         </exclusion>
         <exclusion>
           <groupId>commons-logging</groupId>
@@ -90,9 +116,11 @@
       <artifactId>jcl-over-slf4j</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.opennms.dependencies</groupId>
-      <artifactId>jfreechart-dependencies</artifactId>
-      <type>pom</type>
+      <groupId>org.jfree</groupId>
+      <artifactId>jfreechart</artifactId>
+      <!-- jasper uses 1.0.19, so we shade it and minimize exposure -->
+      <version>1.0.19</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.opennms.dependencies</groupId>

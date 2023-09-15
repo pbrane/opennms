@@ -183,7 +183,6 @@
             <groupId>org.opennms.dependencies</groupId>
             <artifactId>jasper-dependencies</artifactId>
             <version>${project.version}</version>
-            <type>pom</type>
           </dependency>
           <dependency>
             <groupId>net.sf.jasperreports</groupId>
@@ -740,6 +739,10 @@
       <type>pom</type>
     </dependency>
     <dependency>
+      <groupId>org.opennms.features</groupId>
+      <artifactId>org.opennms.features.charts</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.opennms.features.status</groupId>
       <artifactId>org.opennms.features.status.api</artifactId>
       <version>${project.version}</version>
@@ -1080,7 +1083,6 @@
       <groupId>org.opennms.dependencies</groupId>
       <artifactId>jasper-dependencies</artifactId>
       <version>${project.version}</version>
-      <type>pom</type>
     </dependency>
     <dependency>
       <groupId>org.opennms.dependencies</groupId>
