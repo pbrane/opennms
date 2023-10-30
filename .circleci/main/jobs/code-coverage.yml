@@ -23,6 +23,7 @@
       - run:
           name: Run SonarQube Code Analysis
           when: always
+          no_output_timeout: 30m
           command: |
             export MAVEN_OPTS="-Xmx12g -XX:ReservedCodeCacheSize=1g -XX:+TieredCompilation"
             .circleci/scripts/sonar.sh
